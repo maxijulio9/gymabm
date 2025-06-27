@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1>Musculación</h1>
+            <p>Welcome to the Musculación section. Here you can find all the information related to our Musculación discipline.</p>
+        </div>
+           <div class="col-md-6">
+            <img src="assets/images/zumba.png" alt="">
+        </div>
+    </div>
+
+
+    <table class="table table-normal table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Cupos disponible</th>
+                <th>Horario</th>
+                <th>Precio</th>
+                <th>Profesores</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+                @if (musculacionData && musculacionData.length > 0) {
+                    @for (item of musculacionData; track item.id) {
+                        <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.cuposDisponibles }}</td>
+                        <td>{{ item.horario }}</td>
+                        <td>{{ item.precio }}</td>
+                        <td>{{ item.profesor }}</td>
+                        <td>
+                            <button class="btn btn-primary">Modificar</button>
+                        </td>
+                        </tr>
+                    }
+                    } @else {
+                    <tr>
+                        <td colspan="7">No hay datos disponibles</td>
+                    </tr>
+                    }
+        </tbody>
+
+    </table>
+</div>

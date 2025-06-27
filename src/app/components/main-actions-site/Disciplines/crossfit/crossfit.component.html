@@ -1,0 +1,136 @@
+<div class="container mb-8">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1>Crossfit</h1>
+            <p>Bienvenido a la sección de Crossfit. Aquí encontrarás toda la información relacionada con nuestra disciplina de Crossfit.</p>
+        </div>
+        <div class="col-md-6">
+            <img src="assets/images/crossfit.png" alt="Crossfit Image" class="img-fluid">
+        </div>
+    </div>
+
+
+    <form [formGroup]="activityForm" >
+
+
+        <input type="hidden" formControlName="id">
+        <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="Nombre" class="form-label">Nombre</label>
+           <input type="text" formControlName = "name" class="form-control"
+                [ngClass]="{'is-invalid': activityForm.get('name')?.invalid && (activityForm.get('name')?.touched)}">
+            </div>
+            @if (activityForm.get('name')?.invalid && (activityForm.get('name')?.touched )) {
+                <div class="invalid-feedback">
+                    @if (activityForm.get('name')?.errors?.['required']) {
+                        El nombre es obligatorio.
+                    } 
+                </div>
+            }
+
+            <div class="col-md-6 mb-3">
+                <label for="Descripcion" class="form-label">Cupos Disponibles</label>
+                <input type="number" formControlName="cuposDisponibles" class="form-control"
+                [ngClass]="{'is-invalid': activityForm.get('cuposDisponibles')?.invalid && (activityForm.get('cuposDisponibles')?.touched)}">
+            </div>
+            @if (activityForm.get('cuposDisponibles')?.invalid && (activityForm.get('cuposDisponibles')?.touched)) {
+                <div class="invalid-feedback">
+                    @if (activityForm.get('cuposDisponibles')?.errors?.['required']) {
+                        Los cupos disponibles son obligatorios.
+                    }
+                </div>
+            }
+        </div>
+
+        
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea formControlName="description" id="" class="form-control" 
+            [ngClass]="{'is-invalid': activityForm.get('description')?.invalid && (activityForm.get('description')?.touched)}"></textarea>  
+        </div>
+        @if (activityForm.get('description')?.invalid && (activityForm.get('description')?.touched)) {
+            <div class="invalid-feedback">
+                @if (activityForm.get('description')?.errors?.['required']) {
+                    La descripción es obligatoria.
+                }
+            </div>
+        }
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="number" formControlName="precio" class="form-control"
+            [ngClass]="{'is-invalid': activityForm.get('precio')?.invalid && (activityForm.get('precio')?.touched)}">
+        </div>
+        @if (activityForm.get('precio')?.invalid && (activityForm.get('precio')?.touched)) {
+            <div class="invalid-feedback">
+                @if (activityForm.get('precio')?.errors?.['required']) {
+                    console.log(activityForm.get('precio')?.errors);
+                    El precio es obligatorio.
+                }
+            </div>
+        }
+
+        <div class="col-md-8 mb-3">
+            <label for="profesor" class="form-label">Profesor</label>
+            <input type="text" formControlName="profesor" class="form-control"
+            [ngClass]="{'is-invalid': activityForm.get('profesor')?.invalid && (activityForm.get('profesor')?.touched)}">
+        </div>
+        @if (activityForm.get('profesor')?.invalid && (activityForm.get('profesor')?.touched)) {
+            <div class="invalid-feedback">
+                @if (activityForm.get('profesor')?.errors?.['required']) {
+                    El profesor es obligatorio.
+                }
+            </div>
+        }
+
+    </div>
+    <div class="col-md-4 mb-3">
+            <button class="btn btn-primary mt-4" (click)="onSubmit()">Agregar Actividad</button>
+    </div>
+
+
+
+    </form>
+
+    
+
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>XCupos disponibles</th>
+                <th>Precio</th>
+                <th>Profesor</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="table-body">
+            @for (activity of crossfit; track activity.id) {
+                <tr>
+                    <td>{{ activity.id }}</td>
+                    <td>{{ activity.name }}</td>
+                    <td>{{ activity.description }}</td>
+                    <td>{{ activity.cuposDisponibles }} min</td>
+                    <td>{{ activity.precio }}</td>
+                    <td>{{ activity.profesor }}</td>
+                    <td>
+                        <button class="btn-action btn-primary" (click)="editActivity(activity)">
+                            <i class="bi btn-edit bi-pen"></i>
+                        </button>
+                        <button class="btn-action btn-x btn-outline-secondary" (click)="deleteActivity(activity.id)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,93 @@
+{
+  "musculacion": [
+    {
+      "id": "1",
+      "name": "Musculacion",
+      "description": "Musculacion is a comprehensive fitness program designed to enhance strength, endurance, and overall physical health. It includes a variety of exercises targeting different muscle groups, ensuring a balanced workout routine.",
+      "cuposDisponibles": 20,
+      "horario": "Lunes a Viernes, 6:00 AM - 8:00 PM",
+      "precio": "$50000",
+      "profesor": "Juan Perez, Maria Lopez, Carlos Gomez"
+    },
+    {
+      "id": "2",
+      "name": "Musculacion Avanzada",
+      "description": "Musculacion Avanzada is an advanced fitness program for experienced individuals looking to push their limits. It includes high-intensity workouts and specialized training techniques.",
+      "cuposDisponibles": 15,
+      "horario": "Lunes a Viernes, 5:00 AM - 9:00 PM",
+      "precio": "$70000",
+      "profesor": "Ana Torres, Luis Martinez"
+    },
+    {
+      "id": "3",
+      "name": "Musculacion para Principiantes",
+      "description": "Musculacion para Principiantes is designed for those new to fitness. It focuses on basic exercises and proper form to build a solid foundation.",
+      "cuposDisponibles": 25,
+      "horario": "Lunes a Viernes, 7:00 AM - 6:00 PM",
+      "precio": "$40000",
+      "profesor": "Sofia Ramirez, Diego Fernandez"
+    },
+    {
+      "id": "4",
+      "name": "Musculacion Funcional",
+      "description": "Musculacion Funcional combines traditional strength training with functional movements to improve overall fitness and daily performance.",
+      "cuposDisponibles": 18,
+      "horario": "Lunes a Viernes, 8:00 AM - 7:00 PM",
+      "precio": "$60000",
+      "profesor": "Laura Sanchez, Javier Ruiz"
+    }
+  ],
+  "people": [
+    {
+      "id": "3",
+      "firstName": "Alice",
+      "lastName": "Johnson",
+      "email": "maximilianojavierjulio@gmail.com",
+      "phone": "555-123-4567",
+      "address": "789 Oak St, Sometown, USA",
+      "height": 170,
+      "weight": 65,
+      "birthDate": "2025-05-27T00:00:00.000Z",
+      "discipline": "3"
+    },
+    {
+      "id": "h4cd4a00zyb",
+      "firstName": "Silvia Susanat",
+      "lastName": "Jutlio",
+      "email": "maximilianojavierjulio@gmail.comt",
+      "phone": "03825618079t4",
+      "address": "Antonia 43 9018",
+      "height": 43,
+      "weight": 43,
+      "birthDate": "2025-05-28T00:00:00.000Z",
+      "discipline": "2"
+    }
+  ],
+  "crossfit": [
+    {
+      "id": "1",
+      "name": "Crossfit",
+      "description": "Crossfit is a high-intensity fitness program that combines elements of cardio, weightlifting, and functional movements. It is designed to improve overall fitness and athletic performance.",
+      "cuposDisponibles": 306767,
+      "precio": "60000",
+      "profesor": "Carlos Perez, Maria Lopez"
+    },
+    {
+      "id": "2",
+      "name": "Crossfit Avanzado",
+      "description": "Crossfit Avanzado is for experienced athletes looking to take their training to the next level. It includes advanced techniques and high-intensity workouts.",
+      "cuposDisponibles": 20,
+      "horario": "Lunes a Viernes, 5:00 AM - 10:00 PM",
+      "precio": "80000",
+      "profesor": "Ana Torres, Luis Martinez"
+    },
+    {
+      "id": "sqmemixlcfk",
+      "name": "sdfsf",
+      "description": "werwerwer",
+      "cuposDisponibles": 3223,
+      "precio": 4224,
+      "profesor": "42424224"
+    }
+  ]
+}

@@ -1,0 +1,261 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>People List</h1>
+            <button class="btn btn-success mb-3" (click)="openAddPersonModal(addPersonModal)">Add Person</button>
+        </div>
+    </div>
+<!--  export interface person{
+    id : string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone?: string;
+    address: string;
+    height?: number;
+    weight?: number;
+    birthDate: Date;
+    discipline: string;
+    disciplineId: string;
+    
+} -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Height (cm)</th>
+                <th>Weight (kg)</th>
+                <th>Birth Date</th>
+                <th>Discipline</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (person of people; track person.id) {
+                <tr>
+                    <td>{{ person.id }}</td>
+                    <td>{{ person.firstName }}</td>
+                    <td>{{ person.lastName }}</td>
+                    <td>{{ person.email }}</td>
+                    <td>{{ person.phone || 'N/A' }}</td>
+                    <td>{{ person.address }}</td>
+                    <td>{{ person.height ? person.height + ' cm' : 'N/A' }}</td>
+                    <td>{{ person.weight ? person.weight + ' kg' : 'N/A' }}</td>
+                    <td>{{ person.birthDate | date: 'longDate' }}</td>
+                    <td>{{ person.discipline }}</td>
+                    <td>
+                        <button class="btn-action" (click)="editPerson(person)"><i class="bi btn-edit bi-pen"></i></button>
+                        <button class="btn-action  btn-x" (click)="deletePerson(person.id!)"><i class="bi bi-person-x"></i></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<ng-template #addPersonModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Agregar Persona</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="personForm">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" class="form-control" formControlName="firstName" required>
+          @if (personForm.get('firstName')?.invalid && (personForm.get('firstName')?.touched)) {
+            <div class="invalid-feedback">
+              El nombre es obligatorio.
+            </div>
+          }
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" class="form-control" formControlName="lastName" required>
+          @if (personForm.get('lastName')?.invalid && (personForm.get('lastName')?.touched)) {
+            <div class="invalid-feedback">
+              El apellido es obligatorio.
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email" required>
+        @if (personForm.get('email')?.invalid && (personForm.get('email')?.touched)) {
+          <div class="invalid-feedback">
+            El email es obligatorio y debe ser válido.
+          </div>
+        }
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" class="form-control" formControlName="phone">
+        </div>
+        
+        <div class="col-md-6 mb-3">
+          <label for="birthDate">Birth Date</label>
+          <input type="date" id="birthDate" class="form-control" formControlName="birthDate" required>
+          @if (personForm.get('birthDate')?.invalid && (personForm.get('birthDate')?.touched)) {
+            <div class="invalid-feedback">
+              La fecha de nacimiento es obligatoria.
+            </div>
+          }
+        </div>        
+      </div>
+
+      <div class="col-md-6 mb-3">
+          <label for="address">Address</label>
+          <input type="text" id="address" class="form-control" formControlName="address" required>
+          @if (personForm.get('address')?.invalid && (personForm.get('address')?.touched)) {
+            <div class="invalid-feedback">
+              La dirección es obligatoria.
+            </div>
+          }
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="height">Height (cm)</label>
+          <input type="number" id="height" class="form-control" formControlName="height">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="weight">Weight (kg)</label>
+          <input type="number" id="weight" class="form-control" formControlName="weight">
+        </div>
+      
+      </div>  
+      <div class="mb-3">
+        <label for="discipline">Discipline</label>
+        <select id="discipline" class="form-select" formControlName="discipline" >
+          <option value="" disabled selected>Seleccione una disciplina</option>
+          @for (discipline of disciplines; track discipline.id) {
+            <option [value]="discipline.id">{{ discipline.name }}</option>
+          }
+        </select>
+      </div>      
+
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancelar</button>
+    <button 
+    class="btn btn-primary"
+    (click)="savePerson(modal)"
+    [disabled]="personForm.invalid">Guardar</button>
+  </div>
+  
+  
+</ng-template>
+
+<ng-template #editPersonModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Editar Persona</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="personForm">
+
+      <input type="hidden" formControlName="id">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" class="form-control" formControlName="firstName" required>
+          @if (personForm.get('firstName')?.invalid && (personForm.get('firstName')?.touched)) {
+            <div class="invalid-feedback">
+              El nombre es obligatorio.
+            </div>
+          }
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" class="form-control" formControlName="lastName" required>
+          @if (personForm.get('lastName')?.invalid && (personForm.get('lastName')?.touched)) {
+            <div class="invalid-feedback">
+              El apellido es obligatorio.
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email" required>
+        @if (personForm.get('email')?.invalid && (personForm.get('email')?.touched)) {
+          <div class="invalid-feedback">
+            El email es obligatorio y debe ser válido.
+          </div>
+        }
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" class="form-control" formControlName="phone">
+        </div>
+        
+        <div class="col-md-6 mb-3">
+          <label for="birthDate">Birth Date</label>
+          <input type="date" id="birthDate" class="form-control" formControlName="birthDate" required>
+          @if (personForm.get('birthDate')?.invalid && (personForm.get('birthDate')?.touched)) {
+            <div class="invalid-feedback">
+              La fecha de nacimiento es obligatoria.
+            </div>
+          }
+        </div>        
+      </div>
+
+      <div class="col-md-6 mb-3">
+          <label for="address">Address</label>
+          <input type="text" id="address" class="form-control" formControlName="address" required>
+          @if (personForm.get('address')?.invalid && (personForm.get('address')?.touched)) {
+            <div class="invalid-feedback">
+              La dirección es obligatoria.
+            </div>
+          }
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="height">Height (cm)</label>
+          <input type="number" id="height" class="form-control" formControlName="height">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="weight">Weight (kg)</label>
+          <input type="number" id="weight" class="form-control" formControlName="weight">
+        </div>
+      
+      </div>  
+      <div class="mb-3">
+        <label for="discipline">Discipline</label>
+        <select id="discipline" class="form-select" formControlName="discipline" >
+          <option value="" disabled selected>Seleccione una disciplina</option>
+          @for (discipline of disciplines; track discipline.id) {
+            <option [value]="discipline.id">{{ discipline.name }}</option>
+          }
+        </select>
+      </div>      
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancelar</button>
+    <button 
+    class="btn btn-primary"
+    (click)="updatePerson(modal)"
+    [disabled]="personForm.invalid">Guardar Cambios</button>
+  </div> 
+</ng-template>
