@@ -3,10 +3,11 @@ import { Crossfit } from '../../../../model/crossfit';
 import { CrossfitService } from '../../../../services/crossfit.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-crossfit',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './crossfit.component.html',
   styleUrl: './crossfit.component.css'
 })

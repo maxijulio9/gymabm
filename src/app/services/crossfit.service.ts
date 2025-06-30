@@ -8,7 +8,7 @@ import { Crossfit } from '../model/crossfit';
 })
 export class CrossfitService {
 
-  baseUrl = 'http://localhost:3000/crossfit'; // Replace with your actual API endpoint
+  baseUrl = 'http://localhost:3000/crossfit'; 
   constructor(private http: HttpClient) { }
 
   loadCrossfitData(): Observable<Crossfit[]> {

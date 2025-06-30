@@ -1,5 +1,8 @@
+
 <div class="container mb-8">
+    <a class="go-back" routerLink='/disciplines-grid' routerLinkActive='active'>Volver atrás</a>
     <div class="row mb-4">
+
         <div class="col-md-6">
             <h1>Crossfit</h1>
             <p>Bienvenido a la sección de Crossfit. Aquí encontrarás toda la información relacionada con nuestra disciplina de Crossfit.</p>
@@ -88,7 +91,7 @@
 
     </div>
     <div class="col-md-4 mb-3">
-            <button class="btn btn-primary mt-4" (click)="onSubmit()">Agregar Actividad</button>
+        <button class="btn btn-primary mt-4" (click)="onSubmit()">Agregar Actividad</button>
     </div>
 
 
@@ -117,8 +120,8 @@
                     <td>{{ activity.id }}</td>
                     <td>{{ activity.name }}</td>
                     <td>{{ activity.description }}</td>
-                    <td>{{ activity.cuposDisponibles }} min</td>
-                    <td>{{ activity.precio }}</td>
+                    <td>{{ activity.cuposDisponibles }}</td>
+                    <td>${{ activity.precio }}</td>
                     <td>{{ activity.profesor }}</td>
                     <td>
                         <button class="btn-action btn-primary" (click)="editActivity(activity)">

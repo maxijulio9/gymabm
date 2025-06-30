@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MainActionsComponent } from '../main-actions/main-actions.component';
+import { MainActionsComponent } from '../main-actions-set/main-actions/main-actions.component';
 
 @Component({
   selector: 'app-homepage',

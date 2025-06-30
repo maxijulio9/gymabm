@@ -1,40 +1,145 @@
-<div class="container">
+<div class="container mb-8">
+   
+    <a class="go-back" routerLink='/disciplines-grid' routerLinkActive='active'>Volver atrás</a>
+
     <div class="row mb-4">
         <div class="col-md-6">
             <h1>Musculación</h1>
             <p>Welcome to the Musculación section. Here you can find all the information related to our Musculación discipline.</p>
         </div>
            <div class="col-md-6">
-            <img src="assets/images/zumba.png" alt="">
+            <img src="assets/images/muscu.png" alt="">
         </div>
     </div>
+
+    @if (showSuccess) {
+        <div class="alert alert-success" role="alert">
+            @if (musculacionForm.value.id) {
+                Actividad actualizada correctamente.
+            } @else {
+                Actividad creada correctamente.
+            }
+        </div>
+    }
+
+
+    <form [formGroup]="musculacionForm" id="musculacionForm">
+
+        <input type="hidden" formControlName="id">
+
+        <div class="row ">
+            <div class="col-md-4">
+                <label for="nombre" >Nombre</label>
+                <input type="text"  formControlName="name" class="form-control"
+                [ngClass]="{'is-invalid': musculacionForm.get('name')?.invalid && (musculacionForm.get('name')?.touched)} ">
+                @if ((musculacionForm.get("name")?.invalid) && (musculacionForm.get("name")?.touched)) {
+                <div class="invalid-feedback">
+                    @if (musculacionForm.get('name')?.errors?.['required']) {
+                        El nombre es obligatorio.
+                    }
+                </div>
+            }
+            </div>
+            
+            
+            <div class="col-md-4">
+                <label for="CuposDisponibles">Cupos disponibles</label>
+                <input type="text" formControlName="cuposDisponibles" class="form-control"
+                [ngClass]="{'is-invalid': musculacionForm.get('cuposDisponibles')?.invalid && (musculacionForm.get('cuposDisponibles')?.touched)}">
+                @if((musculacionForm.get("cuposDisponibles")?.invalid) && (musculacionForm.get("cuposDisponibles")?.touched)) {
+                    <div class="invalid-feedback">
+                        @if (musculacionForm.get('cuposDisponibles')?.errors?.['required']) {
+                            Los cupos disponibles son obligatorios.
+                        }
+                    </div>
+                }
+            </div>
+
+        </div>
+
+        <div class="row mb-3">       
+            <div class="col-md-8">
+                <label for="descripcion">Descripción de la actividad</label>
+                <textarea formControlName="description" id="" class="form-control"></textarea>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <label for="precio">Precio</label>
+                <input type="string" formControlName="precio" class="form-control"
+                [ngClass]="{'is-invalid': musculacionForm.get('precio')?.invalid && (musculacionForm.get('precio')?.touched)}">
+                @if ((musculacionForm.get('precio'))?.invalid && (musculacionForm.get('precio')?.touched)) {
+                    <div class="invalid-feedback">
+                        @if (musculacionForm.get('precio')?.errors?.['required']) {
+                            El precio es obligatorio.
+                        }
+                    </div>
+                }
+            </div>
+            
+            <div class="col-md-4">
+                <label for="horario">Horario</label>
+                <input type="text" formControlName="horario" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <label for="profesor">Profesores</label>
+                <textarea name="profesor" formControlName="profesor" class="form-control"></textarea>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                @if (musculacionForm.value.id) {
+                    <button class="btn btn-secondary" (click)="onSubmit()">Actualizar</button>
+                }@else{
+                    <button class="btn btn-primary" (click)="onSubmit()">Crear</button>
+
+                }
+            </div>
+
+            <div class="col-md-4">
+                <button class="btn btn-danger" (click)="resetForm()">Cancelar</button>
+            </div>
+        </div>
+
+
+    </form>
 
 
     <table class="table table-normal table-striped">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Cupos disponible</th>
                 <th>Horario</th>
                 <th>Precio</th>
                 <th>Profesores</th>
-                <th>Actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
                 @if (musculacionData && musculacionData.length > 0) {
                     @for (item of musculacionData; track item.id) {
                         <tr>
+                        <td>{{ item.id }}</td>
                         <td>{{ item.name }}</td>
                         <td>{{ item.description }}</td>
                         <td>{{ item.cuposDisponibles }}</td>
                         <td>{{ item.horario }}</td>
-                        <td>{{ item.precio }}</td>
+                        <td>${{ item.precio }}</td>
                         <td>{{ item.profesor }}</td>
                         <td>
-                            <button class="btn btn-primary">Modificar</button>
+                            <button class="btn btn-primary " (click)="editActivity(item)" href="#musculacionForm"><i class="bi bi-pen"></i></button>
+                            <button class="btn btn-danger" (click)="deleteActivity(item.id)"><i class="bi bi-trash"></i></button>
+
                         </td>
+            
                         </tr>
                     }
                     } @else {

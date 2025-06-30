@@ -4,7 +4,7 @@ export interface Musculacion{
     description?: string;
     cuposDisponibles: number;
     horario: string;
-    precio: number;
+    precio: string;
     profesor: string;
 
 }

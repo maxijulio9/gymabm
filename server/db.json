@@ -2,12 +2,12 @@
   "musculacion": [
     {
       "id": "1",
-      "name": "Musculacion",
+      "name": "Musculacionee",
       "description": "Musculacion is a comprehensive fitness program designed to enhance strength, endurance, and overall physical health. It includes a variety of exercises targeting different muscle groups, ensuring a balanced workout routine.",
       "cuposDisponibles": 20,
       "horario": "Lunes a Viernes, 6:00 AM - 8:00 PM",
-      "precio": "$50000",
-      "profesor": "Juan Perez, Maria Lopez, Carlos Gomez"
+      "precio": "50000900",
+      "profesor": "Juan Perez,erre"
     },
     {
       "id": "2",
@@ -15,7 +15,7 @@
       "description": "Musculacion Avanzada is an advanced fitness program for experienced individuals looking to push their limits. It includes high-intensity workouts and specialized training techniques.",
       "cuposDisponibles": 15,
       "horario": "Lunes a Viernes, 5:00 AM - 9:00 PM",
-      "precio": "$70000",
+      "precio": "70000",
       "profesor": "Ana Torres, Luis Martinez"
     },
     {
@@ -24,7 +24,7 @@
       "description": "Musculacion para Principiantes is designed for those new to fitness. It focuses on basic exercises and proper form to build a solid foundation.",
       "cuposDisponibles": 25,
       "horario": "Lunes a Viernes, 7:00 AM - 6:00 PM",
-      "precio": "$40000",
+      "precio": "45999",
       "profesor": "Sofia Ramirez, Diego Fernandez"
     },
     {
@@ -33,8 +33,17 @@
       "description": "Musculacion Funcional combines traditional strength training with functional movements to improve overall fitness and daily performance.",
       "cuposDisponibles": 18,
       "horario": "Lunes a Viernes, 8:00 AM - 7:00 PM",
-      "precio": "$60000",
+      "precio": "60000",
       "profesor": "Laura Sanchez, Javier Ruiz"
+    },
+    {
+      "id": null,
+      "name": "fdsfdsfds",
+      "description": "dsfsdf",
+      "cuposDisponibles": "fdsf",
+      "horario": "34",
+      "precio": "43",
+      "profesor": "43sdfsd"
     }
   ],
   "people": [
@@ -69,15 +78,14 @@
       "name": "Crossfit",
       "description": "Crossfit is a high-intensity fitness program that combines elements of cardio, weightlifting, and functional movements. It is designed to improve overall fitness and athletic performance.",
       "cuposDisponibles": 306767,
-      "precio": "60000",
+      "precio": 67,
       "profesor": "Carlos Perez, Maria Lopez"
     },
     {
       "id": "2",
       "name": "Crossfit Avanzado",
       "description": "Crossfit Avanzado is for experienced athletes looking to take their training to the next level. It includes advanced techniques and high-intensity workouts.",
-      "cuposDisponibles": 20,
-      "horario": "Lunes a Viernes, 5:00 AM - 10:00 PM",
+      "cuposDisponibles": 0,
       "precio": "80000",
       "profesor": "Ana Torres, Luis Martinez"
     },

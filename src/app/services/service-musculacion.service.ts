@@ -18,7 +18,21 @@ export class ServiceMusculacionService {
     return this.http.get<Musculacion[]>(this.baseURL)
   }
 
-  updateMusculacionData(id: string): void {
-    console.log('Musculacion data updated for ID:', id);
+  addActivityService(activity: Musculacion): Observable<Musculacion>{
+    console.log("work");
+
+    return this.http.post<Musculacion>(this.baseURL, activity);
+
+  }
+
+  updateMusculacionData(activityActual: Musculacion): Observable<Musculacion> {
+
+    console.log('Musculacion data updated for ID:', activityActual.id);
+    return this.http.put<Musculacion>(`${this.baseURL}/${activityActual.id}`, activityActual);
+  }
+
+  deleteMusculacionData(id: string): Observable<void> {
+    console.log('Deleting Musculacion data for ID:', id);
+    return this.http.delete<void>(`${this.baseURL}/${id}`);
   }
 }
