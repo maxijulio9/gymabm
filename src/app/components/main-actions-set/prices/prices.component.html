@@ -1,5 +1,61 @@
 <div class="container">
     <h1 class="text-center">PRICES</h1>
+    <form [formGroup]="pricesForm">
+
+        <input type="hidden" formControlName="id">
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" formControlName="name"
+                [ngClass]="{'is-invalid': pricesForm.get('name')?.invalid && (pricesForm.get('name')?.touched)}">
+                @if (pricesForm.get('name')?.invalid && (pricesForm.get('name')?.touched)) {
+                <div class="invalid-feedback">
+                    El nombre es obligatorio.   
+                </div>
+                }
+            </div>
+            <div class="col-md-4">
+                <label for="price" >Precio</label>
+                <input type="text" class="form-control" formControlName="price"
+                [ngClass]="{'is-invalid': pricesForm.get('price')?.invalid && (pricesForm.get('price')?.touched)}">
+                @if (pricesForm.get('price')?.invalid && (pricesForm.get('price')?.touched)) {
+                <div class="invalid-feedback">
+                    El precio es obligatorio y debe ser un número válido.
+                </div>
+                }
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+            <label for="description">Describí la actividad</label>
+            <textarea name="description" formControlName="description" class="form-control"></textarea>
+            </div>
+            <div class="col-md-4">
+                <label for="location">Ubicación</label>
+                <input type="text" formControlName="location" class="form-control">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+              @if (pricesForm.value.id) {
+                  <button (click)="onSubmit()" class="btn btn-primary mb-5">Actualizar</button>
+              }@else{
+                  <button (click)="onSubmit()" class="btn btn-primary mb-5">Enviar</button>
+              }
+
+            </div>
+
+            <div class="col">
+                <button (click)="resetForm()" class="btn btn-danger mb-5">Cancelar</button>
+            </div>
+        </div>
+
+
+    </form>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -11,6 +67,20 @@
                 <td>Actions</td>
             </tr>
         </thead>
+        <tbody>
+            @for (activity of prices; track activity.id) {
+            <tr>
+                <td>{{ activity.id }}</td>
+                <td>{{ activity.name }}</td>
+                <td>{{ activity.description }}</td>
+                <td>{{ activity.price }} USD</td>
+                <td>{{ activity.location }}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="editPrice(activity)"><i class="bi bi-pen"></i></button>
+                    <button class="btn btn-danger" (click)="deletePrice(activity.id)"><i class="bi bi-trash"></i></button>
+                </td>
+            }
+        </tbody>
 
     </table>
 </div>

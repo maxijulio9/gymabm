@@ -97,5 +97,35 @@
       "precio": 4224,
       "profesor": "42424224"
     }
+  ],
+  "prices": [
+    {
+      "id": "1",
+      "name": "Mensualidad",
+      "description": "Mensualidad para acceso completo a todas las instalaciones y actividades del gimnasio.",
+      "price": "5099",
+      "location": "Buenos Aires"
+    },
+    {
+      "id": "2",
+      "name": "Anualidad",
+      "description": "Anualidad con descuento para acceso completo a todas las instalaciones y actividades del gimnasio.",
+      "price": "50000",
+      "location": "Chilecito"
+    },
+    {
+      "id": "3",
+      "name": "Diaria",
+      "description": "Acceso diario a todas las instalaciones del gimnasio.",
+      "price": "500",
+      "location": "Buenos Aires"
+    },
+    {
+      "id": "4",
+      "name": "Semanal",
+      "description": "Acceso semanal a todas las instalaciones del gimnasio.",
+      "price": "2000",
+      "location": "Buenos Aires"
+    }
   ]
 }
